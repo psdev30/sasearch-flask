@@ -6,6 +6,15 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+flask = "*"
+flask-sqlalchemy = "*"
+selenium = "*"
+flask-cors = "*"
+cloudinary = "*"
+nltk = "*"
+speechrecognition = "*"
+moviepy = "*"
+pydub = "*"
 
 [requires]
 python_version = "3.8"
