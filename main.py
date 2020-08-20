@@ -53,9 +53,9 @@ class Clip(db.Model):
 
 
 # default server page
-@app.route('/')
-def landingPage():
-    return render_template('index.html')
+# @app.route('/')
+# def landingPage():
+#     return render_template('index.html')
 
 
 # add all clips in clips_library directory
