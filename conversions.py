@@ -1,6 +1,7 @@
 # from moviepy.editor import *
 # from pydub import AudioSegment
 # import speech_recognition as sr
+import os
 #
 # class Conversions:
 #

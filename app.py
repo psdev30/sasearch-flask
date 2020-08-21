@@ -129,9 +129,9 @@ def add_clip(file_name):
     name, short_path, text = Conversions.extractText(wav, file_name)
 
     #filter out stopwords before committing to database
-    text = text.lower()
-    split_text = text.split()
-    split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
+    # text = text.lower()
+    # split_text = text.split()
+    # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
     # construct Clip object + push to db if it doesn't already exist
     if db.session.query(Clip).filter(Clip.name == name).count() == 0:
