@@ -24,7 +24,7 @@ cloudinary.config(
     api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
 )
 
-env = 'dev'
+env = 'prod'
 
 if env == 'dev':
     app.debug = True
@@ -32,7 +32,7 @@ if env == 'dev':
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zjpruukwmzslom:f101159ab3c8cbf5d03c955e3e3c035bb6078292a019ee0c4bfdbb0088922bc0@ec2-35-175-155-248.compute-1.amazonaws.com:5432/dfs59f0918ndjr'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
