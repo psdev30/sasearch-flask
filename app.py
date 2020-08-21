@@ -119,7 +119,7 @@ def query_search(query):
 # only for adding clips to library
 @app.route('/add-clip/<file_name>', methods=['GET'])
 def add_clip(file_name):
-    convert mp4 file to mp3
+    # convert mp4 file to mp3
     wav, mp3 = Conversions.convertToMp3(file_name)
 
     # convert mp3 to wav
