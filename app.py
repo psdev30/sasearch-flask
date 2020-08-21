@@ -5,7 +5,7 @@ from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import nltk
 from selenium.webdriver.chrome.options import Options
-from conversions import Conversions
+# from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 from selenium import webdriver
