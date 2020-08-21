@@ -114,7 +114,7 @@
                 "sha256:6ec658144ddfa0b25de5f82671729734a54cdf999ddd69a134999fe6a413f3e7",
                 "sha256:8cd09469ae25d8a7083ee4033a43827aadacabebc47a87432222034d2c97e542"
             ],
-            "markers": "python_version >= '3.4'",
+            "markers": "python_version >= '3.8'",
             "version": "==0.4.2"
         },
         "itsdangerous": {
