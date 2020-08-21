@@ -1,5 +1,4 @@
 from moviepy.editor import *
-import imageio_ffmpeg
 from pydub import AudioSegment
 import speech_recognition as sr
 import os
