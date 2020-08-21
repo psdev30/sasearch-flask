@@ -5,7 +5,7 @@ from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import nltk
 from selenium.webdriver.chrome.options import Options
-# from conversions import Conversions
+from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 from selenium import webdriver
@@ -119,25 +119,25 @@ def query_search(query):
 # only for adding clips to library
 @app.route('/add-clip/<file_name>', methods=['GET'])
 def add_clip(file_name):
-    # convert mp4 file to mp3
-    # wav, mp3 = Conversions.convertToMp3(file_name)
-    #
-    # # convert mp3 to wav
-    # Conversions.convertToWav(wav, mp3)
-    #
-    # # extract text from wav file & set Clip model properties
-    # name, short_path, text = Conversions.extractText(wav, file_name)
+    convert mp4 file to mp3
+    wav, mp3 = Conversions.convertToMp3(file_name)
 
-    # filter out stopwords before committing to database
-    # text = text.lower()
-    # split_text = text.split()
-    # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
-    #
-    # # construct Clip object + push to db if it doesn't already exist
-    # if db.session.query(Clip).filter(Clip.name == name).count() == 0:
-    #     clip_obj = Clip(name, short_path, split_text)
-    #     db.session.add(clip_obj)
-    #     db.session.commit()
+    # convert mp3 to wav
+    Conversions.convertToWav(wav, mp3)
+
+    # extract text from wav file & set Clip model properties
+    name, short_path, text = Conversions.extractText(wav, file_name)
+
+    #filter out stopwords before committing to database
+    text = text.lower()
+    split_text = text.split()
+    split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
+
+    # construct Clip object + push to db if it doesn't already exist
+    if db.session.query(Clip).filter(Clip.name == name).count() == 0:
+        clip_obj = Clip(name, short_path, split_text)
+        db.session.add(clip_obj)
+        db.session.commit()
 
     # add to cloudinary
     file = "clips_library/" + file_name + '.mp4'
