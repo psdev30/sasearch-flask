@@ -52,13 +52,6 @@
             ],
             "version": "==4.4.2"
         },
-        "ffmpeg": {
-            "hashes": [
-                "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"
-            ],
-            "index": "pypi",
-            "version": "==1.4"
-        },
         "flask": {
             "hashes": [
                 "sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060",
@@ -105,17 +98,6 @@
                 "sha256:52ddbaeca2dccf53ba2d6dec5676ca7bc3b2403ef8b37f7da78b7654bb3e10f0"
             ],
             "version": "==2.9.0"
-        },
-        "imageio-ffmpeg": {
-            "hashes": [
-                "sha256:13b05b17a941a9f4a90b16910b1ffac159448cff051a153da8ba4b4343ffa195",
-                "sha256:4aaa9cbd1e536143379ae474323d80f4c4a693fff0b023bab440ea5913db00ac",
-                "sha256:596f9d1516972d9723c5bc6eb1849a29e3989a8cd20834b261a8c80fd9f8f6f5",
-                "sha256:6ec658144ddfa0b25de5f82671729734a54cdf999ddd69a134999fe6a413f3e7",
-                "sha256:8cd09469ae25d8a7083ee4033a43827aadacabebc47a87432222034d2c97e542"
-            ],
-            "markers": "python_version >= '3.4'",
-            "version": "==0.4.2"
         },
         "itsdangerous": {
             "hashes": [
