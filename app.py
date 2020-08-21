@@ -66,7 +66,8 @@ def add_clips_in_directory():
     for file in os.listdir(clipDirectory):
         file = file.split('.')
         driver = webdriver.Chrome(options=chrome_options)
-        driver.get('http://127.0.0.1:5000/add_clip/{}'.format(file[0]))
+        driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(file[0]))
+    # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(file[0]))
     return 'successfully added all clips!'
 
 
