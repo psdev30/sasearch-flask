@@ -117,7 +117,7 @@ def query_search(query):
     # return clip
 
 # only for adding clips to library
-@app.route('/add_clip/<file_name>', methods=['POST'])
+@app.route('/add_clip/<file_name>', methods=['POST', 'GET'])
 def add_clip(file_name):
     # convert mp4 file to mp3
     wav, mp3 = Conversions.convert_to_mp3(file_name)
