@@ -58,6 +58,7 @@ class Clip(db.Model):
 def landingPage():
     return render_template('index.html')
 
+# just to see cloudinary JSON response
 @app.route('/list_cloudinary', methods=['GET'])
 def list():
     return cloudinary.api.resources(resource_type='video')
