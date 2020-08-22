@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "94e53937f0cb32a6ff1396ecc4055cc870b290f2e0b4bc3384e59f17dd42121b"
+            "sha256": "47b61bc5c835e74f9bbd0eb3c1cfed4d86cdf9ac246575cff8bb6b4fb772e488"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -45,12 +45,26 @@
             "index": "pypi",
             "version": "==1.22.0"
         },
+        "converter": {
+            "hashes": [
+                "sha256:4620fdc1ffd54c258009d35c247b7c588a864df1867155c151e0b9705903809d"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
+        },
         "decorator": {
             "hashes": [
                 "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760",
                 "sha256:e3a62f0520172440ca0dcc823749319382e377f37f140a0b99ef45fecb84bfe7"
             ],
             "version": "==4.4.2"
+        },
+        "ffmpeg": {
+            "hashes": [
+                "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"
+            ],
+            "index": "pypi",
+            "version": "==1.4"
         },
         "flask": {
             "hashes": [
@@ -91,6 +105,24 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.10"
+        },
+        "imageio": {
+            "hashes": [
+                "sha256:3604d751f03002e8e0e7650aa71d8d9148144a87daf17cb1f3228e80747f2e6b",
+                "sha256:52ddbaeca2dccf53ba2d6dec5676ca7bc3b2403ef8b37f7da78b7654bb3e10f0"
+            ],
+            "version": "==2.9.0"
+        },
+        "imageio-ffmpeg": {
+            "hashes": [
+                "sha256:13b05b17a941a9f4a90b16910b1ffac159448cff051a153da8ba4b4343ffa195",
+                "sha256:4aaa9cbd1e536143379ae474323d80f4c4a693fff0b023bab440ea5913db00ac",
+                "sha256:596f9d1516972d9723c5bc6eb1849a29e3989a8cd20834b261a8c80fd9f8f6f5",
+                "sha256:6ec658144ddfa0b25de5f82671729734a54cdf999ddd69a134999fe6a413f3e7",
+                "sha256:8cd09469ae25d8a7083ee4033a43827aadacabebc47a87432222034d2c97e542"
+            ],
+            "markers": "python_version >= '3.4'",
+            "version": "==0.4.2"
         },
         "itsdangerous": {
             "hashes": [

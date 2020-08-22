@@ -24,7 +24,7 @@ cloudinary.config(
     api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
 )
 
-env = 'prod'
+env = 'dev'
 
 if env == 'dev':
     app.debug = True
@@ -115,6 +115,9 @@ def query_search(query):
     # return render_template('index.html', clip)
     # return clip
 
+@app.route('/caw', methods=['GET'])
+def test():
+    Conversions.caw()
 
 # only for adding clips to library
 @app.route('/add-clip/<file_name>', methods=['GET'])

@@ -18,6 +18,7 @@ pydub = "*"
 gunicorn = "*"
 ffmpeg = "*"
 psycopg2 = "*"
+converter = "*"
 
 [requires]
 python_version = "3.8"
