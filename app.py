@@ -18,9 +18,11 @@ GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
 chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-gpu')
+
 chrome_options.binary_location = chrome_bin
 
 nltk.download('stopwords')
