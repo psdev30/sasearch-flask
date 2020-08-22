@@ -1,40 +1,47 @@
+import time
+
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from pydub import AudioSegment
 import speech_recognition as sr
 import os
+import cloudinary, cloudinary.uploader, cloudinary.api
 
 
 class Conversions:
 
-    def caw():
-        clipDirectory = 'C:/Users/psjuk/SASearch/clips_library/'
-        # for filename in os.listdir(clipDirectory):
-        #     os.system("ffmpeg -i {0} -acodec pcm_s16le -ar 16000 out.wav".format(filename))
+    def convert_to_mp3(file_name):
+        mp4 = 'clips_library/' + file_name + '.mp4'
+        mp3 = 'clips_library/' + file_name + '.mp3'
+        wav = 'clips_library/' + file_name + '.wav'
+        video_clip = VideoFileClip(mp4)
+        audio_clip = video_clip.audio
+        audio_clip.write_audiofile(mp3)
+        audio_clip.close()
+        video_clip.close()
 
-    def convertToMp3(fileName):
-        mp4 = 'clips_library/' + fileName + '.mp4'
-        mp3 = fileName + '.mp3'
-        wav = fileName + '.wav'
-        videoClip = VideoFileClip(mp4)
-        audioClip = videoClip.audio
-        audioClip.write_audiofile(mp3)
-        audioClip.close()
-        videoClip.close()
         return wav, mp3
 
-    def convertToWav(wav, mp3):
-        filepath = os.path.abspath(mp3)
-        sound = AudioSegment.from_mp3(filepath).export(wav, format="wav")
+    def convert_to_wav(wav, mp3):
+        sound = AudioSegment.from_mp3(mp3)
+        sound.export(wav, format="wav")
+        return
 
-    def extract_text(wav, fileName):
+    def extract_text(wav, file_name):
         r = sr.Recognizer()
         with sr.WavFile(os.path.abspath(wav)) as source:
-            audio = r.record(source)
-            text = r.recognize_google(audio)
-            name = fileName.title()
-            if '_' in fileName:
-                name = name.replace('_', ' ')
-            short_path = fileName + '.mp4'
-        os.remove(fileName + '.mp3')
-        os.remove(fileName + '.wav')
-        return name, short_path, text
+            try:
+                audio = r.record(source)
+                text = r.recognize_google(audio)
+                name = file_name.title()
+                if '_' in file_name:
+                    name = name.replace('_', ' ')
+                short_path = file_name + '.mp4'
+                os.remove('clips_library/' + file_name + '.mp3')
+                os.remove('clips_library/' + file_name + '.wav')
+                return name, short_path, text
+
+            except:
+                os.remove('clips_library/' + file_name + '.mp4')
+                os.remove('clips_library/' + file_name + '.mp3')
+                os.remove('clips_library/' + file_name + '.wav')
+                return 'clip audio is unreadable'

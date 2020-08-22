@@ -8,10 +8,11 @@ from selenium.webdriver.chrome.options import Options
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
+import speech_recognition as sr
 from selenium import webdriver
 
 
-clipDirectory = 'C:/Users/psjuk/SASearch/clips_library/'
+clipDirectory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
 nltk.download('stopwords')
 
@@ -59,7 +60,7 @@ def landingPage():
 
 
 # add all clips in clips_library directory
-@app.route('/add_clicked', methods=['POST'])
+@app.route('/add_all_clips', methods=['POST'])
 def add_clips_in_directory():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -67,7 +68,7 @@ def add_clips_in_directory():
         file = file.split('.')
         driver = webdriver.Chrome(options=chrome_options)
         driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(file[0]))
-    # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(file[0]))
+        # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(file[0]))
     return 'successfully added all clips!'
 
 
@@ -120,33 +121,32 @@ def test():
     Conversions.caw()
 
 # only for adding clips to library
-@app.route('/add-clip/<file_name>', methods=['GET'])
+@app.route('/add_clip/<file_name>', methods=['GET'])
 def add_clip(file_name):
     # convert mp4 file to mp3
-    wav, mp3 = Conversions.convertToMp3(file_name)
+    wav, mp3 = Conversions.convert_to_mp3(file_name)
 
     # convert mp3 to wav
-    Conversions.convertToWav(wav, mp3)
+    Conversions.convert_to_wav(wav, mp3)
 
     # extract text from wav file & set Clip model properties
-    name, short_path, text = Conversions.extractText(wav, file_name)
+    name, short_path, text = Conversions.extract_text(wav, file_name)
 
     #filter out stopwords before committing to database
-    # text = text.lower()
+    text = text.lower()
     # split_text = text.split()
     # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
     # construct Clip object + push to db if it doesn't already exist
     if db.session.query(Clip).filter(Clip.name == name).count() == 0:
-        clip_obj = Clip(name, short_path, split_text)
+        clip_obj = Clip(name, short_path, text)
         db.session.add(clip_obj)
         db.session.commit()
+        file = "clips_library/" + file_name + '.mp4'
+        cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)
+        return 'clip successfully added to database + cloudinary!'
 
-    # add to cloudinary
-    file = "clips_library/" + file_name + '.mp4'
-    cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)
-
-    return 'clip successfully added to database + cloudinary!'
+    return 'clip already added to database + cloudinary!'
 
 
 
