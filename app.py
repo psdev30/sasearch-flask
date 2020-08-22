@@ -60,7 +60,7 @@ def landingPage():
 
 
 # add all clips in clips_library directory
-@app.route('/add_all_clips', methods=['GET'])
+@app.route('/add_all_clips', methods=['POST'])
 def add_clips_in_directory():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -115,10 +115,6 @@ def query_search(query):
     # clip.headers['Content-Disposition'] = 'inline'
     # return render_template('index.html', clip)
     # return clip
-
-@app.route('/caw', methods=['GET'])
-def test():
-    Conversions.caw()
 
 # only for adding clips to library
 @app.route('/add_clip/<file_name>', methods=['GET'])
