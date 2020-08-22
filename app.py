@@ -58,14 +58,19 @@ class Clip(db.Model):
 def landingPage():
     return render_template('index.html')
 
+@app.route('/list_cloudinary', methods=['GET'])
+def list():
+    return cloudinary.api.resources(resource_type='video')
+
 
 # add all clips in clips_library directory
 @app.route('/add_all_clips', methods=['POST', 'GET'])
 def add_clips_in_directory():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    for public_id in cloudinary.api.resources(resource_type='video'):
-        public_id.split('/')
+    cloudinary_response = cloudinary.api.resources(resource_type='video')
+    for i in range(len(cloudinary_response['resources'])):
+        public_id = cloudinary_response['resources'][i]['public_id']
         driver = webdriver.Chrome(options=chrome_options)
         driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
     return 'successfully added all clips!'
