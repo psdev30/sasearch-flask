@@ -2,7 +2,9 @@ certifi==2020.6.20
 chardet==3.0.4
 click==7.1.2
 cloudinary==1.22.0
+converter==1.0.0
 decorator==4.4.2
+ffmpeg==1.4
 Flask==1.1.2
 Flask-Cors==3.0.8
 Flask-SQLAlchemy==2.4.4
