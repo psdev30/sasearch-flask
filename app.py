@@ -118,32 +118,33 @@ def query_search(query):
 
 # only for adding clips to library
 @app.route('/add_clip/<file_name>', methods=['GET'])
-if(request.method == 'POST'):
-    def add_clip(file_name):
-        # convert mp4 file to mp3
-        wav, mp3 = Conversions.convert_to_mp3(file_name)
+def add_clip(file_name):
+    if(request.method == 'POST'):
+        def execute_add_clip(file_name):
+            # convert mp4 file to mp3
+            wav, mp3 = Conversions.convert_to_mp3(file_name)
 
-        # convert mp3 to wav
-        Conversions.convert_to_wav(wav, mp3)
+            # convert mp3 to wav
+            Conversions.convert_to_wav(wav, mp3)
 
-        # extract text from wav file & set Clip model properties
-        name, short_path, text = Conversions.extract_text(wav, file_name)
+            # extract text from wav file & set Clip model properties
+            name, short_path, text = Conversions.extract_text(wav, file_name)
 
-        #filter out stopwords before committing to database
-        text = text.lower()
-        # split_text = text.split()
-        # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
+            #filter out stopwords before committing to database
+            text = text.lower()
+            # split_text = text.split()
+            # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
-        # construct Clip object + push to db if it doesn't already exist
-        if db.session.query(Clip).filter(Clip.name == name).count() == 0:
-            clip_obj = Clip(name, short_path, text)
-            db.session.add(clip_obj)
-            db.session.commit()
-            file = "clips_library/" + file_name + '.mp4'
-            cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)
-            return 'clip successfully added to database + cloudinary!'
+            # construct Clip object + push to db if it doesn't already exist
+            if db.session.query(Clip).filter(Clip.name == name).count() == 0:
+                clip_obj = Clip(name, short_path, text)
+                db.session.add(clip_obj)
+                db.session.commit()
+                file = "clips_library/" + file_name + '.mp4'
+                cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)
+                return 'clip successfully added to database + cloudinary!'
 
-        return 'clip already added to database + cloudinary!'
+            return 'clip already added to database + cloudinary!'
 
 
 
