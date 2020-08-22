@@ -78,7 +78,7 @@ def add_clips_in_directory():
     cloudinary_response = cloudinary.api.resources(resource_type='video')
     for i in range(len(cloudinary_response['resources'])):
         public_id = cloudinary_response['resources'][i]['public_id']
-        driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
         # driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
     return 'successfully added all clips!'
