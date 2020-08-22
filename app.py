@@ -14,9 +14,9 @@ from selenium import webdriver
 
 clipDirectory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+# GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+# CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+# chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
 chrome_options = Options()
 # chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
@@ -24,7 +24,7 @@ chrome_options.add_argument('--headless')
 # chrome_options.add_argument('--disable-gpu')
 # chrome_options.add_argument("--disable-extensions")
 
-chrome_options.binary_location = chrome_bin
+# chrome_options.binary_location = chrome_bin
 
 nltk.download('stopwords')
 
@@ -83,9 +83,10 @@ def add_clips_in_directory():
     cloudinary_response = cloudinary.api.resources(resource_type='video')
     for i in range(len(cloudinary_response['resources'])):
         public_id = cloudinary_response['resources'][i]['public_id']
-        driver = webdriver.Chrome(executable_path="chromedriver", options=chrome_options)
-        driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
+        driver = webdriver.Chrome(options=chrome_options)
+        # executable_path="chromedriver",
         # driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
+        driver.get('http://127.0.0.1/add_clip/{}'.format(public_id[1]))
     return 'successfully added all clips!'
 
 
