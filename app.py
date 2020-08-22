@@ -24,7 +24,7 @@ cloudinary.config(
     api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
 )
 
-env = 'dev'
+env = 'prod'
 
 if env == 'dev':
     app.debug = True
