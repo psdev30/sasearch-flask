@@ -60,7 +60,7 @@ def landingPage():
 
 
 # add all clips in clips_library directory
-@app.route('/addAllClips', methods=['POST'])
+@app.route('/add_all_clips', methods=['POST'])
 def add_clips_in_directory():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
