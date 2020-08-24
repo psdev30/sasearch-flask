@@ -1,14 +1,12 @@
-import time
-
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from pydub import AudioSegment
 import speech_recognition as sr
 import os
-import cloudinary, cloudinary.uploader, cloudinary.api
 
 
 class Conversions:
 
+    # converts mp4 to mp3
     def convert_to_mp3(file_name):
         mp4 = 'clips_library/' + file_name + '.mp4'
         mp3 = 'clips_library/' + file_name + '.mp3'
@@ -21,11 +19,13 @@ class Conversions:
 
         return wav, mp3
 
+    # converts mp3 to wav
     def convert_to_wav(wav, mp3):
         sound = AudioSegment.from_mp3(mp3)
         sound.export(wav, format="wav")
         return
 
+    # use google speech recognition to parse text from clips
     def extract_text(wav, file_name):
         r = sr.Recognizer()
         with sr.WavFile(os.path.abspath(wav)) as source:
