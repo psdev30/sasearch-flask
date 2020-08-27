@@ -94,7 +94,7 @@ def query_search(query):
     cloudinary_resp = dict()
     urls = dict()
     counter = 0
-    sql_query = db.engine.execute("SELECT * FROM clip WHERE text ILIKE CONCAT('%%', (%s) ,'%%')", (query))
+    sql_query = db.engine.execute("SELECT * FROM clip WHERE text ILIKE CONCAT('%%', (%s) ,'%%')", query)
     for row in sql_query:
         cloudinary_resp[counter] = cloudinary.Search().expression(row.short_path).execute()
         urls[counter] = cloudinary_resp[counter]['resources'][0]['public_id']
