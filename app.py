@@ -10,6 +10,8 @@ from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 from selenium import webdriver
 
+from webdriver_manager.chrome import ChromeDriverManager
+
 # will switch back to remote path once I figure how to configure chrome + selenium w/ heroku
 clipDirectory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
@@ -27,7 +29,7 @@ cloudinary.config(
     api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
 )
 
-env = 'prod'
+env = 'dev'
 
 if env == 'dev':
     app.debug = True
@@ -35,11 +37,15 @@ if env == 'dev':
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
+    app.config[
+        'SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 db = SQLAlchemy(app)
+
 
 # database model
 class Clip(db.Model):
@@ -48,6 +54,7 @@ class Clip(db.Model):
     name = db.Column(db.String(200), unique=True)
     short_path = db.Column(db.String(200), unique=True)
     text = db.Column(db.Text(), unique=True)
+    classification = db.Column(db.Integer, primary_key=True, unique=False)
 
     def __init__(self, name, short_path, text):
         self.name = name
@@ -55,14 +62,17 @@ class Clip(db.Model):
         self.text = text
 
 
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # default server page
 @app.route('/')
-def landingPage():
+def landing_page():
     return render_template('index.html')
+
 
 # just to see cloudinary JSON response
 @app.route('/list_cloudinary', methods=['GET'])
-def list():
+def list_cloudinary():
     return cloudinary.api.resources(resource_type='video')
 
 
@@ -73,19 +83,13 @@ def get_random_clip():
     random_id = random.randint(1, count)
     return random_search(random_id)
 
-# helper function for /random
+
+# executes SQL query for /random
 def random_search(random_id):
     sql_query = db.engine.execute("SELECT * FROM clip WHERE id = (%s)", random_id)
     for row in sql_query:
-       response = cloudinary.Search().expression(row.short_path).execute()
+        response = cloudinary.Search().expression(row.short_path).execute()
     return flask.jsonify(response['resources'][0]['public_id'])
-
-
-    # from way back when I was trying to return mp4 files..
-    # vid_path = clipDirectory + '/' + results[0]
-    # clip = make_response(send_file(vid_path, 'video/mp4'))
-    # clip.headers['Content-Disposition'] = 'inline'
-    # return clip
 
 
 # handles search query
@@ -102,36 +106,17 @@ def query_search(query):
     return urls
 
 
-    # old code that tried to return a video
-    # paths[counter] = i.short_path
-    # vid_path = clipDirectory + paths[counter]
-
-    # clip = make_response(send_file(vid_path, 'video/mp4'))
-    # clip.headers['Content-Disposition'] = 'inline'
-    # return render_template('index.html', clip)
-    # return clip
-
-
 # add all clips in clips_library directory
-@app.route('/add_all_clips', methods=['POST', 'GET'])
+@app.route('/add_all_clips', methods=['POST'])
 def add_clips_in_directory():
-
     cloudinary_response = cloudinary.api.resources(resource_type='video')
     for i in range(len(cloudinary_response['resources'])):
         public_id = cloudinary_response['resources'][i]['public_id']
         driver = webdriver.Chrome(options=chrome_options)
         # driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id[1]))
-        driver.get('http://127.0.0.1/add_clip/{}'.format(public_id[1]))
+        driver.get('http://127.0.0.1:5000/add_clip/{}'.format(public_id[1]))
     return 'successfully added all clips!'
 
-
-    # for local use
-    # for file in os.listdir(clipDirectory):
-    #     file = file.split('.')
-    #     driver = webdriver.Chrome(options=chrome_options)
-    #     driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(file[0]))
-    #     # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(file[0]))
-    # return 'successfully added all clips!'
 
 # adds a single clip to library (helper func for add_all_clips)
 @app.route('/add_clip/<file_name>', methods=['POST', 'GET'])
@@ -147,7 +132,7 @@ def add_clip(file_name):
 
     text = text.lower()
 
-    #filter out stopwords before committing to database (decided against it to allow for less specific searches)
+    # filters out stopwords before committing to database (decided against it to allow for less specific searches)
     # split_text = text.split()
     # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
@@ -161,7 +146,6 @@ def add_clip(file_name):
         return 'clip successfully added to database + cloudinary!'
 
     return 'clip already added to database + cloudinary!'
-
 
 
 if __name__ == '__main__':
