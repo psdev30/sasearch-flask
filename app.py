@@ -10,7 +10,6 @@ from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 from selenium import webdriver
 
-from webdriver_manager.chrome import ChromeDriverManager
 
 # will switch back to remote path once I figure how to configure chrome + selenium w/ heroku
 clipDirectory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
@@ -29,7 +28,7 @@ cloudinary.config(
     api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
 )
 
-env = 'dev'
+env = 'prod'
 
 if env == 'dev':
     app.debug = True
