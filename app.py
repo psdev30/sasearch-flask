@@ -1,7 +1,7 @@
 import os
 import random
 import flask
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import nltk
 # from selenium.webdriver.chrome.options import Options
