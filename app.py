@@ -5,14 +5,14 @@ from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import nltk
 from selenium.webdriver.chrome.options import Options
+
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 from selenium import webdriver
 
-
 # will switch back to remote path once I figure why chrome + selenium is not configured correctly with Heroku
-clipDirectory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
+clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
 # run WebDriver headless so a million Chrome tabs aren't opened
 chrome_options = Options()
@@ -43,7 +43,8 @@ if env == 'dev':
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
+    app.config[
+        'SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -56,16 +57,16 @@ db = SQLAlchemy(app)
 class Clip(db.Model):
     __tablename__ = 'clip'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), unique=True)
-    short_path = db.Column(db.String(200), unique=True)
-    text = db.Column(db.Text(), unique=True)
-    classification = db.Column(db.Integer, primary_key=True, unique=False)
+    name = db.Column(db.String(200), unique=False)
+    short_path = db.Column(db.String(200), unique=False)
+    text = db.Column(db.Text(), unique=False)
+    # classification = db.Column(db.Integer, primary_key=True, unique=False)
 
-    def __init__(self, name, short_path, text, classification):
+    def __init__(self, name, short_path, text):
         self.name = name
         self.short_path = short_path
         self.text = text
-        self.classification = classification
+        # self.classification = classification
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -115,25 +116,24 @@ def query_search(query):
 # add all clips in clips_library directory
 @app.route('/add_all_clips', methods=['POST'])
 def add_all_clips():
-    cloudinary_response = cloudinary.api.resources(resource_type='video')
-    for i in range(len(cloudinary_response['resources'])):
-        public_id = cloudinary_response['resources'][i]['public_id'].split('/')[1]
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id))
-        # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(public_id[1]))
-        # add_clip(public_id)
-    return 'successfully added all clips!'
+    count = 0
+    for mp4 in os.listdir(clip_directory):
+        file_name = mp4.split('.')[0]
+        curr = add_clip(file_name)
+        count = count + curr
+    return 'successfully added' + count + 'clips!'
 
 
-# adds a single clip to library (helper func for add_all_clips)
+# adds a single clip to library
 @app.route('/add_clip/<file_name>', methods=['POST'])
 def add_clip(file_name):
+    count = 0
 
     # convert mp4 file to mp3
-    wav, mp3 = Conversions.convert_to_mp3(file_name)
+    mp3, wav = Conversions.convert_to_mp3(file_name)
 
     # convert mp3 to wav
-    Conversions.convert_to_wav(wav, mp3)
+    Conversions.convert_to_wav(mp3, wav)
 
     # extract text from wav file & set Clip model properties
     name, short_path, text = Conversions.extract_text(wav, file_name)
@@ -145,15 +145,19 @@ def add_clip(file_name):
     # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
     # construct Clip object + push to db if it doesn't already exist
-    if db.session.query(Clip).filter(Clip.name == name).count() == 0:
+    if db.session.query(Clip).filter(Clip.short_path == short_path).count() == 0:
         clip_obj = Clip(name, short_path, text)
         db.session.add(clip_obj)
         db.session.commit()
         file = "clips_library/" + file_name + '.mp4'
         cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)
-        return 'clip successfully added to database + cloudinary!'
+        Conversions.remove_mp3_wav()
+        count += 1
+        return count
 
-    return 'clip already added to database + cloudinary!'
+    Conversions.remove_mp3_wav()
+    count += 1
+    return count
 
 
 if __name__ == '__main__':

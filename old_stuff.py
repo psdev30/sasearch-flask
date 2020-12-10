@@ -21,3 +21,13 @@
 # clip = make_response(send_file(vid_path, 'video/mp4'))
 # clip.headers['Content-Disposition'] = 'inline'
 # return clip
+
+
+# cloudinary_response = cloudinary.api.resources(resource_type='video')
+# for i in range(len(cloudinary_response['resources'])):
+#     public_id = cloudinary_response['resources'][i]['public_id'].split('/')[1]
+
+# driver = webdriver.Chrome(options=chrome_options)
+# driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id))
+# driver.get('http://127.0.0.1:5000/add_clip/{}'.format(public_id[1]))
+# curr = add_clip(public_id)
