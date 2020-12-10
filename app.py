@@ -4,29 +4,25 @@ import flask
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import nltk
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
-from selenium import webdriver
+# from selenium import webdriver
 
-# will switch back to remote path once I figure why chrome + selenium is not configured correctly with Heroku
+
 clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
-# run WebDriver headless so a million Chrome tabs aren't opened
-chrome_options = Options()
-chrome_options.add_argument('--headless')
+# chrome_options = Options()
+# chrome_options.add_argument('--headless')
 
 nltk.download('stopwords')
 
 app = Flask(__name__)
-
-# prevents Cross-Origin Access errors
 CORS(app)
 
 # connect cloudinary to API
-
 cloudinary.config(
     cloud_name="dzoq2eys2",
     api_key="134647386342649",
@@ -34,7 +30,6 @@ cloudinary.config(
 )
 
 # environment config
-
 env = 'prod'
 
 if env == 'dev':
@@ -105,7 +100,7 @@ def query_search(query):
     cloudinary_resp = dict()
     urls = dict()
     counter = 0
-    sql_query = db.engine.execute("SELECT * FROM clip WHERE text ILIKE CONCAT('%%', (%s) ,'%%')", query)
+    sql_query = db.engine.execute("SELECT * FROM clip WHERE text LIKE CONCAT('%%', (%s) ,'%%')", query)
     for row in sql_query:
         cloudinary_resp[counter] = cloudinary.Search().expression(row.short_path).execute()
         urls[counter] = cloudinary_resp[counter]['resources'][0]['public_id']
@@ -127,6 +122,7 @@ def add_all_clips():
 # adds a single clip to library
 @app.route('/add_clip/<file_name>', methods=['POST'])
 def add_clip(file_name):
+    # for debugging
     count = 0
 
     # convert mp4 file to mp3
@@ -144,10 +140,10 @@ def add_clip(file_name):
     # split_text = text.split()
     # split_text = [word for word in split_text if word not in nltk.corpus.stopwords.words('english')]
 
-    # construct Clip object + push to db if it doesn't already exist
+    # construct Clip row + push to db if it doesn't already exist
     if db.session.query(Clip).filter(Clip.short_path == short_path).count() == 0:
-        clip_obj = Clip(name, short_path, text)
-        db.session.add(clip_obj)
+        new_clip_row = Clip(name, short_path, text)
+        db.session.add(new_clip_row)
         db.session.commit()
         file = "clips_library/" + file_name + '.mp4'
         cloudinary.uploader.upload_large(file, resource_type="video", public_id='clips_library/' + file_name)

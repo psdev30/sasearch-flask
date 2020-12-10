@@ -29,7 +29,7 @@ class Conversions:
         sound.export(wav, format="wav")
         return
 
-    # use google speech recognition to parse text from clips
+    # speech to text conversion
     @staticmethod
     def extract_text(wav, file_name):
         r = sr.Recognizer()
