@@ -42,7 +42,6 @@ class Conversions:
 
                 if '_' in file_name:
                     name = name.replace('_', ' ')
-
                 return name, short_path, text
 
             except:

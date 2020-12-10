@@ -47,7 +47,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
 # database model
 class Clip(db.Model):
     __tablename__ = 'clip'
@@ -122,6 +121,7 @@ def add_all_clips():
 # adds a single clip to library
 @app.route('/add_clip/<file_name>', methods=['POST'])
 def add_clip(file_name):
+
     # for debugging
     count = 0
 
