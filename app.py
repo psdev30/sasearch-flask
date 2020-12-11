@@ -42,7 +42,6 @@ class Clip(db.Model):
     name = db.Column(db.String(200), unique=True)
     short_path = db.Column(db.String(200), unique=True)
     text = db.Column(db.Text(), unique=False)
-
     # classification = db.Column(db.Integer, primary_key=True, unique=False)
 
     def __init__(self, name, short_path, text):
