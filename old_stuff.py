@@ -31,3 +31,9 @@
 # driver.get('https://sasearch-backend.herokuapp.com/add_clip/{}'.format(public_id))
 # driver.get('http://127.0.0.1:5000/add_clip/{}'.format(public_id[1]))
 # curr = add_clip(public_id)
+
+
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# chrome_options = Options()
+# chrome_options.add_argument('--headless')

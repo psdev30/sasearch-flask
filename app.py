@@ -4,42 +4,28 @@ import flask
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import nltk
-# from selenium.webdriver.chrome.options import Options
-
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
-# from selenium import webdriver
+import config
 
-
-clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
-
-# chrome_options = Options()
-# chrome_options.add_argument('--headless')
+clip_directory = config.clip_directory
 
 nltk.download('stopwords')
 
 app = Flask(__name__)
 CORS(app)
 
-# connect cloudinary to API
-cloudinary.config(
-    cloud_name="dzoq2eys2",
-    api_key="134647386342649",
-    api_secret="l7kp0buevFOoZjzge7DZkVEVA0Q"
-)
-
 # environment config
-env = 'prod'
+env = config.env
 
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SASearch'
+    app.config['SQLALCHEMY_DATABASE_URI'] = config.LOCAL_POSTGRES
 
 else:
     app.debug = False
-    app.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
+    app.config['SQLALCHEMY_DATABASE_URI'] = config.HEROKU_POSTGRES
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -47,13 +33,15 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 # database model
 class Clip(db.Model):
     __tablename__ = 'clip'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), unique=False)
-    short_path = db.Column(db.String(200), unique=False)
+    name = db.Column(db.String(200), unique=True)
+    short_path = db.Column(db.String(200), unique=True)
     text = db.Column(db.Text(), unique=False)
+
     # classification = db.Column(db.Integer, primary_key=True, unique=False)
 
     def __init__(self, name, short_path, text):
@@ -99,7 +87,7 @@ def query_search(query):
     cloudinary_resp = dict()
     urls = dict()
     counter = 0
-    sql_query = db.engine.execute("SELECT * FROM clip WHERE text LIKE CONCAT('%%', (%s) ,'%%')", query)
+    sql_query = db.engine.execute("SELECT * FROM clip WHERE text ILIKE CONCAT('%%', (%s) ,'%%')", query)
     for row in sql_query:
         cloudinary_resp[counter] = cloudinary.Search().expression(row.short_path).execute()
         urls[counter] = cloudinary_resp[counter]['resources'][0]['public_id']
@@ -107,7 +95,7 @@ def query_search(query):
     return urls
 
 
-# add all clips in clips_library directory
+# adds all clips in directory
 @app.route('/add_all_clips', methods=['POST'])
 def add_all_clips():
     count = 0
@@ -118,11 +106,9 @@ def add_all_clips():
     return 'successfully added' + count + 'clips!'
 
 
-# adds a single clip to library
+# add select clip to cloudinary + db
 @app.route('/add_clip/<file_name>', methods=['POST'])
 def add_clip(file_name):
-
-    # for debugging
     count = 0
 
     # convert mp4 file to mp3
