@@ -13,7 +13,6 @@ clip_directory = config.clip_directory
 
 nltk.download('stopwords')
 
-
 app = Flask(__name__)
 CORS(app)
 
@@ -82,9 +81,9 @@ def random_search(random_id):
 # handles search query
 @app.route('/search/<query>', methods=['GET'])
 def query_search(query):
+    counter = 0
     cloudinary_resp = dict()
     urls = dict()
-    counter = 0
     sql_query = db.engine.execute("SELECT * FROM clip WHERE text ILIKE CONCAT('%%', (%s) ,'%%')", query)
     for row in sql_query:
         cloudinary_resp[counter] = cloudinary.Search().expression(row.short_path).execute()
