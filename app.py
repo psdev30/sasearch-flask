@@ -13,10 +13,11 @@ clip_directory = config.clip_directory
 
 nltk.download('stopwords')
 
+
 app = Flask(__name__)
 CORS(app)
 
-# environment config
+
 env = config.env
 
 if env == 'dev':
@@ -49,8 +50,6 @@ class Clip(db.Model):
         self.short_path = short_path
         self.text = text
         # self.classification = classification
-
-
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # default server page
