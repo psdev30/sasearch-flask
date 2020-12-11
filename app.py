@@ -16,6 +16,7 @@ nltk.download('stopwords')
 app = Flask(__name__)
 CORS(app)
 
+config.cloudinary_config()
 
 env = config.env
 
