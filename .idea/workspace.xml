@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a83a0ae0-000c-4118-a5a9-e0ce5d5adf56" name="Default Changelist" comment="added another video" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectId" id="1gNiTvX1dvgbrxcx0eGrrN0I36a" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\psjuk\PycharmProjects\SASearch-backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python38\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a83a0ae0-000c-4118-a5a9-e0ce5d5adf56" name="Default Changelist" comment="" />
+      <created>1597961462001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597961462001</updated>
+    </task>
+    <task id="LOCAL-00001" summary="added video">
+      <created>1598063625990</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598063625990</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added another video">
+      <created>1598113273615</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598113273615</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commented chrome stuff that's not working">
+      <created>1598132056978</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1598132056978</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactoring">
+      <created>1598303924281</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598303924281</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changed SQL query from LIKE to ILIKE">
+      <created>1598556615153</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1598556615153</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fixed Selenium WebDriver version compatibility issue">
+      <created>1607549205024</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1607549205024</updated>
+    </task>
+    <task id="LOCAL-00007" summary="changed environment to prod">
+      <created>1607549514040</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607549514040</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed parsing issue with Cloudinary JSON response">
+      <created>1607554339698</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607554339698</updated>
+    </task>
+    <task id="LOCAL-00009" summary="simplified process of adding clips locally + to server db">
+      <created>1607577777498</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607577777498</updated>
+    </task>
+    <task id="LOCAL-00010" summary="adjusted SQL query from to LIKE">
+      <created>1607619547038</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607619547038</updated>
+    </task>
+    <task id="LOCAL-00011" summary="adjusted SQL query to LIKE">
+      <created>1607619657966</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1607619657966</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changed search query back to ILIKE">
+      <created>1607619978689</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1607619978689</updated>
+    </task>
+    <task id="LOCAL-00013" summary="removed old import">
+      <created>1607627888901</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1607627888901</updated>
+    </task>
+    <task id="LOCAL-00014" summary="trying LIKE CONCAT in query">
+      <created>1607629473797</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1607629473797</updated>
+    </task>
+    <task id="LOCAL-00015" summary="changed database model + shielded sensitive info">
+      <created>1607644850972</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1607644850972</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added db model back">
+      <created>1607645124278</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1607645124278</updated>
+    </task>
+    <task id="LOCAL-00017" summary="re-add CORS handling">
+      <created>1607645388416</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1607645388416</updated>
+    </task>
+    <task id="LOCAL-00018" summary="resynced Pipfile">
+      <created>1607645477315</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1607645477315</updated>
+    </task>
+    <task id="LOCAL-00019" summary="updated requirements">
+      <created>1607645542826</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1607645542826</updated>
+    </task>
+    <task id="LOCAL-00020" summary="attempt to fix server issue">
+      <created>1607649950523</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1607649950523</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixed 503 server error with cloudinary configuration">
+      <created>1607652473677</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1607652473677</updated>
+    </task>
+    <task id="LOCAL-00022" summary="moved cloudinary config back to main script">
+      <created>1607652916396</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1607652916396</updated>
+    </task>
+    <task id="LOCAL-00023" summary="adding config.py">
+      <created>1607654941980</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1607654941980</updated>
+    </task>
+    <task id="LOCAL-00024" summary="adding config.py">
+      <created>1607655059079</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1607655059079</updated>
+    </task>
+    <task id="LOCAL-00025" summary="file restructuring">
+      <created>1607655551283</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1607655551283</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added video" />
+    <MESSAGE value="added another video" />
+    <MESSAGE value="commented chrome stuff that's not working" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="changed SQL query from LIKE to ILIKE" />
+    <MESSAGE value="fixed Selenium WebDriver version compatibility issue" />
+    <MESSAGE value="changed environment to prod" />
+    <MESSAGE value="fixed parsing issue with Cloudinary JSON response" />
+    <MESSAGE value="simplified process of adding clips locally + to server db" />
+    <MESSAGE value="adjusted SQL query from to LIKE" />
+    <MESSAGE value="adjusted SQL query to LIKE" />
+    <MESSAGE value="changed search query back to ILIKE" />
+    <MESSAGE value="removed old import" />
+    <MESSAGE value="trying LIKE CONCAT in query" />
+    <MESSAGE value="changed database model + shielded sensitive info" />
+    <MESSAGE value="added db model back" />
+    <MESSAGE value="re-add CORS handling" />
+    <MESSAGE value="resynced Pipfile" />
+    <MESSAGE value="updated requirements" />
+    <MESSAGE value="attempt to fix server issue" />
+    <MESSAGE value="fixed 503 server error with cloudinary configuration" />
+    <MESSAGE value="moved cloudinary config back to main script" />
+    <MESSAGE value="adding config.py" />
+    <MESSAGE value="file restructuring" />
+    <option name="LAST_COMMIT_MESSAGE" value="file restructuring" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
