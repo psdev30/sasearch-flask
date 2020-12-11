@@ -11,7 +11,6 @@ clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/
 env = 'prod'
 
 def cloudinary_config():
-    # connect cloudinary to API
     cloudinary.config(
         cloud_name="dzoq2eys2",
         api_key="134647386342649",
