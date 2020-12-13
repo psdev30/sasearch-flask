@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import speech_recognition as sr
 import os
 
-clip_directory = os.environ.get('CLIP_DIRECTORY')
+clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
 
 class Conversions:
@@ -50,6 +50,7 @@ class Conversions:
     # remove mp4 from file directory
     @staticmethod
     def remove_files():
+        return clip_directory
         for file in os.listdir(clip_directory):
             os.remove('clips_library/' + file + '.mp4')
             os.remove('clips_library/' + file + '.mp3')
@@ -61,3 +62,4 @@ class Conversions:
         for file in os.listdir(clip_directory):
             if 'mp3' in file or 'wav' in file:
                 os.remove('clips_library/' + file)
+

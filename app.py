@@ -9,7 +9,7 @@ from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 
 
-clip_directory = os.environ.get('CLIP_DIRECTORY')
+clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
 
 # nltk.download('stopwords')
 
@@ -17,20 +17,20 @@ app = Flask(__name__)
 CORS(app)
 
 cloudinary.config(
-    cloud_name=os.environ.get('CLOUD_NAME'),
-    api_key=os.environ.get('API_KEY'),
-    api_secret=os.environ.get('API_SECRET')
+    cloud_name='dzoq2eys2',
+    api_key='134647386342649',
+    api_secret='l7kp0buevFOoZjzge7DZkVEVA0Q'
 )
 
-env = os.environ.get('ENV')
+env = 'dev'
 
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('LOCAL_POSTGRES')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SASearch'
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SERVER_POSTGRES')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -145,6 +145,11 @@ def add_clip(file_name):
     Conversions.remove_mp3_wav()
     count += 1
     return count
+
+
+@app.route('/delete-files', methods=['DELETE'])
+def delete_files():
+    return Conversions.remove_files()
 
 
 if __name__ == '__main__':
