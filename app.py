@@ -7,11 +7,11 @@ import nltk
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
-import config
 
-clip_directory = config.clip_directory
 
-nltk.download('stopwords')
+clip_directory = os.environ.get('CLIP_DIRECTORY')
+
+# nltk.download('stopwords')
 
 app = Flask(__name__)
 CORS(app)
@@ -22,11 +22,11 @@ cloudinary.config(
     api_secret=os.environ.get('API_SECRET')
 )
 
-env = config.env
+env = os.environ.get('ENV')
 
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SASearch'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('LOCAL_POSTGRES')
 
 else:
     app.debug = False
@@ -145,7 +145,6 @@ def add_clip(file_name):
     Conversions.remove_mp3_wav()
     count += 1
     return count
-
 
 
 if __name__ == '__main__':

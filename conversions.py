@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import speech_recognition as sr
 import os
 
-clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
+clip_directory = os.environ.get('CLIP_DIRECTORY')
 
 
 class Conversions:
