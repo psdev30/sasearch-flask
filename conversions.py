@@ -50,11 +50,14 @@ class Conversions:
     # remove mp4 from file directory
     @staticmethod
     def remove_files():
-        return clip_directory
         for file in os.listdir(clip_directory):
-            os.remove('clips_library/' + file + '.mp4')
-            os.remove('clips_library/' + file + '.mp3')
-            os.remove('clips_library/' + file + '.wav')
+            try:
+                os.remove('clips_library/' + file)
+                os.remove('clips_library/' + file)
+                os.remove('clips_library/' + file)
+            except:
+                continue
+        return 'All Files successfully deleted!'
 
     # remove mp3 + wav from file directory
     @staticmethod
