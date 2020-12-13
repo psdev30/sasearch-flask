@@ -17,20 +17,20 @@ app = Flask(__name__)
 CORS(app)
 
 cloudinary.config(
-    cloud_name=config.CLOUD_NAME,
-    api_key=config.API_KEY,
-    api_secret=config.API_SECRET
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET')
 )
 
 env = config.env
 
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = config.LOCAL_POSTGRES
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SASearch'
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = config.HEROKU_POSTGRES
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SERVER_POSTGRES')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
