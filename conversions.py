@@ -51,6 +51,9 @@ class Conversions:
     @staticmethod
     def remove_files():
         for file in os.listdir(clip_directory):
-            os.remove('clips_library/' + file)
-            os.remove('clips_library/' + file)
-            os.remove('clips_library/' + file)
+            try:
+                os.remove('clips_library/' + file)
+                os.remove('clips_library/' + file)
+                os.remove('clips_library/' + file)
+            except:
+                continue
