@@ -50,6 +50,10 @@ class Conversions:
     # remove mp4 from file directory
     @staticmethod
     def remove_files():
+        directory = os.listdir(clip_directory)
+        if len(directory) == 0:
+            return 'All clips already removed!'
+
         for file in os.listdir(clip_directory):
             try:
                 os.remove('clips_library/' + file)
@@ -57,3 +61,4 @@ class Conversions:
                 os.remove('clips_library/' + file)
             except:
                 continue
+        return 'All clips removed!'
