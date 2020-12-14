@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import speech_recognition as sr
 import os
 
-clip_directory = os.environ.get('CLIP_DIRECTORY')
+clip_path = os.environ.get('CLIP_PATH')
 
 
 class Conversions:
@@ -50,11 +50,11 @@ class Conversions:
     # remove mp4 from file directory
     @staticmethod
     def remove_files():
-        directory = os.listdir(clip_directory)
+        directory = os.listdir(clip_path)
         if len(directory) == 0:
             return 'All clips already removed!'
 
-        for file in os.listdir(clip_directory):
+        for file in os.listdir(clip_path):
             try:
                 os.remove('clips_library/' + file)
                 os.remove('clips_library/' + file)

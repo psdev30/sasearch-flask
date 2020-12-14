@@ -9,7 +9,7 @@ from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
 
 
-clip_directory = os.environ.get('CLIP_DIRECTORY')
+clip_directory = os.environ.get('CLIP_PATH')
 
 # nltk.download('stopwords')
 
