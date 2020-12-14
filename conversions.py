@@ -51,13 +51,6 @@ class Conversions:
     @staticmethod
     def remove_files():
         for file in os.listdir(clip_directory):
-            os.remove('clips_library/' + file + '.mp4')
-            os.remove('clips_library/' + file + '.mp3')
-            os.remove('clips_library/' + file + '.wav')
-
-    # remove mp3 + wav from file directory
-    @staticmethod
-    def remove_mp3_wav():
-        for file in os.listdir(clip_directory):
-            if 'mp3' in file or 'wav' in file:
-                os.remove('clips_library/' + file)
+            os.remove('clips_library/' + file)
+            os.remove('clips_library/' + file)
+            os.remove('clips_library/' + file)
