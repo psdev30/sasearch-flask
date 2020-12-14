@@ -147,7 +147,7 @@ def add_clip(file_name):
     return count
 
 
-@app.route('/delete-files', methods=['DELETE'])
+@app.route('/delete-files', methods=['GET'])
 def delete_files():
     return Conversions.remove_files()
 
