@@ -7,9 +7,10 @@ import nltk
 from conversions import Conversions
 from flask_cors import CORS
 import cloudinary, cloudinary.uploader, cloudinary.api
+from config import *
 
 
-clip_directory = 'C:/Users/psjuk/PyCharmProjects/SASearch-backend/clips_library/'
+clip_directory = CLIP_PATH
 
 # nltk.download('stopwords')
 
@@ -17,20 +18,20 @@ app = Flask(__name__)
 CORS(app)
 
 cloudinary.config(
-    cloud_name='dzoq2eys2',
-    api_key='134647386342649',
-    api_secret='l7kp0buevFOoZjzge7DZkVEVA0Q'
+    cloud_name=CLOUD_NAME,
+    api_key=API_KEY,
+    api_secret=API_SECRET
 )
 
-env = 'dev'
+env = ENV
 
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SASearch'
+    app.config['SQLALCHEMY_DATABASE_URI'] = LOCAL_POSTGRES
 
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fgqiizxvcihyjj:135ccc0f72406e82cf6730ef0d77f9789b020f4341e62012b9e59a7090a634e2@ec2-34-195-115-225.compute-1.amazonaws.com:5432/d1d9mkaifbettr'
+    app.config['SQLALCHEMY_DATABASE_URI'] = HEROKU_POSTGRES
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -46,7 +47,6 @@ class Clip(db.Model):
     name = db.Column(db.String(200), unique=True)
     short_path = db.Column(db.String(200), unique=True)
     text = db.Column(db.Text(), unique=False)
-
     # classification = db.Column(db.Integer, primary_key=True, unique=False)
 
     def __init__(self, name, short_path, text):
