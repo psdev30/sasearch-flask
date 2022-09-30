@@ -16,7 +16,7 @@ imageio==2.9.0
 imageio-ffmpeg==0.4.2
 itsdangerous==1.1.0
 Jinja2==2.11.2
-joblib==0.16.0
+joblib==1.2.0
 MarkupSafe==1.1.1
 moviepy==1.0.3
 nltk==3.5
