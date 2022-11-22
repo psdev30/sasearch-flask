@@ -21,7 +21,7 @@ MarkupSafe==1.1.1
 moviepy==1.0.3
 nltk==3.5
 numpy==1.19.1
-Pillow==7.2.0
+Pillow==9.3.0
 proglog==0.1.9
 psycopg2==2.8.5
 psycopg2-binary==2.8.5
